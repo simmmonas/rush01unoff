@@ -1,20 +1,29 @@
-int		main(int arc, char **raw_input)
+#include <stdlib.h>
+
+int		*conv_input(int arc, char *raw)
 {
-	int i;
-	int input[16];
+	int		*input;
+	int		i;
+
+	input = malloc(16 * 4);
+	i = 0;
 	if (arc != 2)
 	{
-		write(1, "Error", 5);
-		return ;
+		input[0] = 5;
+		return (input);
 	}
 	while (i < 16)
 	{
-		if (raw_input[1][i * 2] > '0' && raw_input[1][i * 2] < '5')
-			input[i] = raw_input[1][i * 2] - '0';
+		if (raw[i * 2] > '0' && raw[i * 2] < '5')
+		{
+			input[i] = raw[i * 2] - '0';
+			i++;
+		}
 		else
 		{
-			write(1, "Error", 5);
-			return ;
+			input[0] = 5;
+			return (&input[0]);
 		}
 	}
+	return (&input[0]);
 }
